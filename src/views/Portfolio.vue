@@ -268,6 +268,7 @@ export default {
       fixedPositionX: null
     };
   },
+
   methods: {
     setActiveMenu(event, currentItem, lastActiveItem) {
       // console.log(currentItem);
