@@ -1,5 +1,4 @@
 module.exports = {
-    css: {
-        // extract: true
-    }
+    assetsDir: "static",
+    publicPath: "/bazan/"
 };
