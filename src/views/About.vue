@@ -49,10 +49,13 @@
         v-for="(section, sectionKey, sectionI) in sections"
         :key="sectionKey"
       >
-        <div class="about__left col-12">
-          <div class="about__img" :id="'about_' + (sectionI + 1)">
-            <h2 class="about__imgTitle">{{sectionKey}}</h2>
-          </div>
+        <div class="about__left about__imgContainer col-12">
+          <kinesis-container event="scroll">
+            <kinesis-element>
+              <div class="about__img" :id="'about_' + (sectionI + 1)" v-parallax="0.2"></div>
+            </kinesis-element>
+          </kinesis-container>
+          <h2 class="about__imgTitle">{{sectionKey}}</h2>
         </div>
         <div class="about__right col-10">
           <div class="about__event event" v-for="(item, itemKey) in section" :key="itemKey">
@@ -66,7 +69,13 @@
   </main>
 </template>
 <script>
+import { KinesisContainer, KinesisElement } from "vue-kinesis";
+
 export default {
+  components: {
+    "kinesis-container": KinesisContainer,
+    "kinesis-element": KinesisElement
+  },
   data: () => {
     return {
       sections: {

@@ -5,6 +5,8 @@ import router from "./router";
 // import ScrollView from "vue-scrollview";
 import VueScrollTo from "vue-scrollto";
 import VueScrollactive from "vue-scrollactive";
+import VueParallaxJs from "vue-parallax-js";
+Vue.use(VueParallaxJs);
 
 // Vue.use(Scrollspy);
 // Vue.use(ScrollView);

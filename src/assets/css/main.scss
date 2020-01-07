@@ -569,11 +569,13 @@ span.sim-dot {
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
+    min-height: 100vh;
     height: 100%;
+    position: relative;
 }
 
 .line--about {
-    margin: 70px auto;
+    margin: 70px auto 0 auto;
     height: 1px;
 }
 
@@ -583,6 +585,9 @@ span.sim-dot {
     padding: 50px 70px;
     width: 50%;
     font-family: "PlayfairDisplay-Bold", serif;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #about_0 {
@@ -617,4 +622,8 @@ span.sim-dot {
 
 .event__description {
     font-size: 2.5vh;
+}
+
+.about__imgContainer {
+    overflow: hidden;
 }
