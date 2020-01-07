@@ -74,6 +74,41 @@ a:hover {
     color: #000;
     font-weight: bold;
     font-size: 2.5vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu__el--active {
+    position: relative;
+}
+
+.menu__el:after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 1px;
+    background-color: #000;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    transition: 0.3s;
+}
+
+.menu__el:hover:after {
+    // left: 0;
+    width: 100%;
+}
+
+.menu__el--active:after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 1px;
+    background-color: #000;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    transition: 0.3s;
 }
 
 /*Стили для страниц -> Главная*/
@@ -562,6 +597,8 @@ span.sim-dot {
 
 .about__container {
     display: flex;
+    width: 100%;
+    padding: 0;
 }
 
 .about__img {

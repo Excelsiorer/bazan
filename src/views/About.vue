@@ -3,7 +3,7 @@
     <div class="row">
       <div class="about__container">
         <div class="about__left col-12">
-          <div class="about__img" id="about_0"></div>
+          <div class="about__img" id="about_0" v-parallax="0.3"></div>
         </div>
         <div class="about__right col-10">
           <ul class="menu menu--about">
@@ -14,7 +14,7 @@
               <router-link to="/portfolio " class="menu__el">portfolio</router-link>
             </li>
             <li class="col-6">
-              <router-link to="/about " class="menu__el">about me</router-link>
+              <router-link to="/about " class="menu__el menu__el--active">about me</router-link>
             </li>
             <li class="col-6">
               <router-link to="/contacts " class="menu__el">contacts</router-link>
@@ -50,11 +50,7 @@
         :key="sectionKey"
       >
         <div class="about__left about__imgContainer col-12">
-          <kinesis-container event="scroll">
-            <kinesis-element>
-              <div class="about__img" :id="'about_' + (sectionI + 1)" v-parallax="0.2"></div>
-            </kinesis-element>
-          </kinesis-container>
+          <div class="about__img" :id="'about_' + (sectionI + 1)" v-parallax="0.3"></div>
           <h2 class="about__imgTitle">{{sectionKey}}</h2>
         </div>
         <div class="about__right col-10">
@@ -69,13 +65,7 @@
   </main>
 </template>
 <script>
-import { KinesisContainer, KinesisElement } from "vue-kinesis";
-
 export default {
-  components: {
-    "kinesis-container": KinesisContainer,
-    "kinesis-element": KinesisElement
-  },
   data: () => {
     return {
       sections: {

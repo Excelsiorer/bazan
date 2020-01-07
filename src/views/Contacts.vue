@@ -3,7 +3,7 @@
     <div class="row">
       <ul class="col-24 menu">
         <li class="col-3">
-          <div class="menu__el">contacts</div>
+          <div class="menu__el menu__el--active">contacts</div>
         </li>
         <li class="col-4">
           <router-link to="/" class="menu__el">main page</router-link>
