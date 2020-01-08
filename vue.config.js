@@ -1,4 +1,3 @@
 module.exports = {
-    assetsDir: "",
-    publicPath: "/bazan/"
+    publicPath: process.env.NODE_ENV === "production" ? "/bazan/" : "/"
 };
