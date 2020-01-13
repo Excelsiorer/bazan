@@ -6,15 +6,15 @@
           <li
             class="instalations__menu-el"
             v-for="(city, cityKey, cityNumber) in projects"
-            :key="cityKey"
+            :key="city.link"
           >
             <a
-              :href="'#menu__project-' + cityNumber"
-              v-scroll-to="'#menu__project-' + cityNumber"
+              :href="'#' + city.link"
+              v-scroll-to="'#' + city.link"
               class="instalations__menu-btn"
               :class="{
                                 'instalations__menu-btn--active':
-                                    activeMenu == cityNumber
+                                    activeMenu == city.link
                             }"
             >{{ cityKey }}</a>
             <scrollactive
@@ -27,17 +27,11 @@
               <li
                 class="instalations__submenu-el"
                 v-for="(projectType,
-                                projectTypeKey,
-                                projectTypeNumber) in city"
-                :key="projectTypeKey"
+                                projectTypeKey) in city.themes"
+                :key="projectType.link"
               >
                 <a
-                  :href="
-                                        '#menu__project-' +
-                                            cityNumber +
-                                            '-' +
-                                            projectTypeNumber
-                                    "
+                  :href="'#' + city.link +'-' +projectType.link"
                   class="instalations__submenu-btn scrollactive-item"
                 >{{ projectTypeKey }}</a>
               </li>
@@ -45,12 +39,12 @@
           </li>
           <li class="instalations__menu-el">
             <div class="instalations__separator"></div>
-            <a href="#" class="instalations__menu-btn">Video</a>
+            <a href="#video" class="instalations__menu-btn">Video</a>
           </li>
           <li>
             <ul class="menu">
               <li>
-                <div class="menu__el">portfolio</div>
+                <router-link to="/portfolio" class="menu__el menu__el--active">portfolio</router-link>
               </li>
               <li>
                 <router-link to="/" class="menu__el">main page</router-link>
@@ -68,22 +62,17 @@
       <div class="col-17 offset-3 instalations__work">
         <section
           v-for="(city, cityKey, cityNumber) in projects"
-          :key="cityKey"
+          :key="city.link"
           class="instalations__section"
-          :id="'menu__project-' + cityNumber"
+          :id="city.link"
         >
           <div
             class="instalations__section-theme"
             v-for="(projectType,
                         projectTypeKey,
-                        projectTypeNumber) in city"
-            :key="projectTypeKey"
-            :id="
-                            'menu__project-' +
-                                cityNumber +
-                                '-' +
-                                projectTypeNumber
-                        "
+                        projectTypeNumber) in city.themes"
+            :key="projectType.link"
+            :id="city.link + '-' +projectType.link"
           >
             <div class="work__section-separator"></div>
             <div class="instalations__works">
@@ -91,11 +80,11 @@
                 class="instalations__title"
                 :class="{
                     'instalations__title--show':
-                        activeMenu == cityNumber &&
-                        activeSubmenu == projectTypeNumber
+                        activeMenu == city.link &&
+                        activeSubmenu == projectType.link
                 }"
               >{{ projectTypeKey }}</h2>
-              <template v-for="(project, projectKey) in projectType">
+              <template v-for="(project, projectKey, projectI) in projectType.projects">
                 <router-link
                   class="work col-24"
                   :to="'/portfolio/' + project.link"
@@ -104,10 +93,10 @@
                   <img
                     class="work_bg"
                     :src="
-                                            require('../assets/img/projects/' +
-                                                project.link +
-                                                '/poster.png')
-                                        "
+                        require('../assets/img/projects/' +
+                            project.srcFolder +
+                            '/poster.png')
+                    "
                   />
                   <div class="work__body">
                     <header class="instalations__header">
@@ -116,12 +105,14 @@
                     </header>
 
                     <footer class="work__footer">
-                      <div class="work__language">{{ project.language }}</div>
                       <div class="work__year">{{ project.year }}</div>
                     </footer>
                   </div>
                 </router-link>
-                <div class="work__separator" :key="'separator_' + projectKey"></div>
+                <div
+                  :class="projectI+1 < Object.keys(projectType.projects).length ? 'work__separator' : 'work__separator--last'"
+                  :key="'separator_' + project.link + '_' + projectI"
+                ></div>
               </template>
             </div>
           </div>
@@ -132,138 +123,14 @@
 </template>
 
 <script>
+import projects from "../projects.js";
 export default {
   name: "Portfolio",
   data: () => {
     return {
-      projects: {
-        "Saint.P": {
-          performances: {
-            "Little Prince": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            },
-            "Little Prince2": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            }
-          },
-          videoprojects: {
-            "Little Prince": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            }
-          },
-          paintings: {
-            "Little Prince": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            }
-          },
-          photos: {
-            "Little Prince": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            }
-          }
-        },
-        Moscow: {
-          "theater directing": {
-            "Little Prince": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            }
-          },
-          "movie production": {
-            "Little Prince": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            }
-          },
-          acting: {
-            "Little Prince": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            }
-          }
-        },
-        Istanbul: {
-          instalations: {
-            "Little Prince": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            }
-          },
-          photos: {
-            "Little Prince": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            }
-          },
-          paintings: {
-            "Little Prince": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            }
-          },
-          drawings: {
-            "Little Prince": {
-              title: "Little Prince",
-              link: "little_prince",
-              description:
-                "This performance is an attempt to show the story wrote by Antoine Exupery. Story of the relationship ,experiences of pain, disappointments and most importantly, love.",
-              language: "French",
-              year: 2013
-            }
-          }
-        }
-      },
-      activeMenu: 0,
-      activeSubmenu: 0,
+      projects: projects,
+      activeMenu: "saintp",
+      activeSubmenu: "performances",
       scrollSpyOfsset: 300,
       fixedPositionX: null
     };
@@ -271,14 +138,18 @@ export default {
 
   methods: {
     setActiveMenu(event, currentItem, lastActiveItem) {
-      // console.log(currentItem);
-      // debugger;
+      // // debugger;
       this.fixedPositionX = currentItem
         ? currentItem.offsetTop + currentItem.offsetHeight
         : 0;
-      let hash = currentItem ? currentItem.hash.split("-") : [0, 0, 0];
-      this.activeMenu = hash[1];
-      this.activeSubmenu = hash[2];
+      let hash = currentItem
+        ? currentItem.hash.split("-")
+        : ["saintp", "performances"];
+      console.log(currentItem);
+      console.log(lastActiveItem);
+      console.log("--------------");
+      this.activeMenu = hash[0].replace("#", "");
+      this.activeSubmenu = hash[1];
     }
   }
 };

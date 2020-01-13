@@ -26,9 +26,10 @@ const routes = [
         component: Portfolio
     },
     {
-        path: "/portfolio/{id}",
+        path: "/portfolio/:id",
         name: "project",
-        component: Project
+        component: Project,
+        props: true
     },
     {
         path: "/contacts",
@@ -39,7 +40,7 @@ const routes = [
 
 const router = new VueRouter({
     mode: "history",
-    base: process.env.BASE_URL,
+    // base: process.env.BASE_URL,
     routes
 });
 

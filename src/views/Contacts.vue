@@ -3,15 +3,15 @@
     <div class="row">
       <ul class="col-24 menu">
         <li class="col-3">
-          <div class="menu__el menu__el--active">contacts</div>
+          <router-link to="/contacts " class="menu__el menu__el--active">contacts</router-link>
         </li>
-        <li class="col-4">
+        <li class="col-4 menu__li">
           <router-link to="/" class="menu__el">main page</router-link>
         </li>
-        <li class="col-4">
+        <li class="col-4 menu__li">
           <router-link to="/portfolio " class="menu__el">portfolio</router-link>
         </li>
-        <li class="col-4">
+        <li class="col-4 menu__li">
           <router-link to="/about " class="menu__el">about me</router-link>
         </li>
       </ul>

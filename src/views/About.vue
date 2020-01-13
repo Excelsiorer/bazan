@@ -55,10 +55,10 @@
         </div>
         <div class="about__right col-10">
           <div class="about__event event" v-for="(item, itemKey) in section" :key="itemKey">
-            <div class="event__title col-12">{{item.title}}</div>
+            <div class="event__title col-12" v-html="item.title"></div>
             <div class="event__description col-12" v-html="item.description"></div>
           </div>
-          <div class="line line--about col-12"></div>
+          <div v-if="sectionI < Object.keys(sections).length - 1" class="line line--about col-12"></div>
         </div>
       </div>
     </div>
@@ -79,23 +79,18 @@ export default {
             description: "Istanbul"
           },
           {
-            title: "Knowledge of foreign languages",
+            title: "Knowledge<br> of foreign languages",
             description: "French, English"
           },
           {
-            title: "The Department of foreign art",
+            title: "The Department<br> of foreign art",
             description:
               "А comparative analysis of works by Henri Matisse’s Conversation and Auguste Renoir’s In the Garden, Tahitian mythology in Paul Gauguin’s Noa Noa, Gothic motifs and images of silence in the works of Odilon Redon."
           },
           {
-            title: "The department of Russian art",
+            title: "The Department<br> of Russian art",
             description:
               "The theatrical works of M.Vrubel, Marc Chagall’s illustrations for the Daphnis and Chloe novel, theatrical murals by Marc Chagall for the Granovsky Jewish theatre, monumental works by Marc Chagall, female images in the works of Borisov-Musatov. <br><br> Active participant of the annual student conference at the Repin Academy of Arts. "
-          },
-          {
-            title: "The Department of foreign art",
-            description:
-              "А comparative analysis of works by Henri Matisse’s Conversation and Auguste Renoir’s In the Garden, Tahitian mythology in Paul Gauguin’s Noa Noa, Gothic motifs and images of silence in the works of Odilon Redon."
           }
         ],
         Education: [
