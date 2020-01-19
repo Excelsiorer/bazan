@@ -1,28 +1,34 @@
 <template>
   <div class="container single-project">
-    <div class="row">
-      <ul class="col-24 menu menu--project">
-        <li class="col-3">
-          <router-link to="/portfolio " class="menu__el menu__el--active">portfolio</router-link>
-        </li>
-        <li class="col-4 menu__li">
-          <router-link to="/" class="menu__el">main page</router-link>
-        </li>
-        <li class="col-4 menu__li">
-          <router-link to="/contacts " class="menu__el">contacts</router-link>
-        </li>
-        <li class="col-4 menu__li">
-          <router-link to="/about " class="menu__el">about me</router-link>
+    <div class="row animated fadeIn" v-if="showAnimation">
+      <cMenu v-if="showMenu" @closeMenu="showMenu = false" />
+      <div class="photo animated fadeIn" v-if="curPhoto.src">
+        <div class="photo__close" @click="closePhoto()"></div>
+        <div class="photo__bg" @click="closePhoto()"></div>
+        <img
+          class="photo__img"
+          :src="require('../assets/img/projects/'+ curProject.srcFolder +'/photos/' + curPhoto.src)"
+        />
+      </div>
+      <ul class="menu">
+        <li id="menuBtn">
+          <div class="menu__el" @click="showMenu = true">menu</div>
         </li>
       </ul>
       <div class="project__list">
         <div class="col-24 d-flex project__body">
-          <div class="project__description col-6">{{curProject.description}}</div>
+          <div class="project__description col-5">
+            <p
+              v-for="(text, textI) in curProject.description"
+              :key="'project__description' + textI"
+              v-html="text"
+            ></p>
+          </div>
           <div class="project__title-container">
             <h1
               class="project__title"
-              :style="{'background-size': backgroundPercent + '% 100%'}"
-            >{{curProject.link}}</h1>
+              :style="{'background-size': backgroundPercent + '% 100%', 'font-size': getFontSize }"
+            >{{curProject.title}}</h1>
           </div>
           <div class="project__photos">
             <img
@@ -32,10 +38,16 @@
               class="project__photo"
               v-for="(photo, photoKey, photoI) in curProject.photos"
               :key="photoKey"
+              @click="openPhoto(photo, )"
             />
             <img src="../assets/img/project__separator.png" class="project__photo--last" />
             <div class="project__separator"></div>
-            <a :href="nextProjectLink" class="project__nextBtn">Следующая работа</a>
+            <a
+              :href="nextProjectLink"
+              class="project__nextBtn"
+              v-if="getNextProject()"
+            >Следующая работа</a>
+            <router-link to="/portfolio" class="project__nextBtn" v-else>Вернутсья в портфолио</router-link>
           </div>
         </div>
       </div>
@@ -45,21 +57,61 @@
 
 <script>
 import allProjects from "../projects.js";
+import cMenu from "../components/cMenu.vue";
 
 export default {
+  components: {
+    cMenu
+  },
   mounted: function() {
     this.$nextTick(function() {
       window.addEventListener("scroll", this.setBackgroundSize);
       window.addEventListener("wheel", this.horizontalScrol);
+      this.showAnimation = true;
     });
     // this.curProject = this.$route.params.id;
     this.curProject = this.getProject(this.$route.params.id);
     this.nextProjectLink = "/portfolio/" + this.getNextProject().link;
-    // console.log(curProject);
+    console.log(this.$route.params.id);
     // this.projects[curProject.link] = curProject;
     // this.$set(this.projects, curProject.link, curProject);
   },
+  destroyed: function() {
+    window.removeEventListener("scroll", this.setBackgroundSize);
+    window.removeEventListener("wheel", this.horizontalScrol);
+  },
   methods: {
+    openPhoto(photo) {
+      this.curPhoto.src = photo;
+      document.getElementsByTagName("html")[0].classList.add("block-scroll");
+      this.blockScroll = true;
+      console.log(photo);
+
+      // var img = document.getElementsByClassName("project__photo")[0];
+      let img = new Image();
+      img.src = require("../assets/img/projects/" +
+        this.curProject.srcFolder +
+        "/photos/" +
+        photo);
+      this.curPhoto.naturalHeight = img.naturalHeight;
+      this.curPhoto.naturalWidth = img.naturalWidth;
+    },
+    closePhoto() {
+      let menuOverlay = document.getElementsByClassName("photo")[0];
+      menuOverlay.classList.remove("fadeIn");
+      menuOverlay.classList.add("fadeOut");
+      setTimeout(() => {
+        this.curPhoto = {
+          src: null,
+          naturalWidth: null,
+          naturalHeight: null
+        };
+        document
+          .getElementsByTagName("html")[0]
+          .classList.remove("block-scroll");
+        this.blockScroll = false;
+      }, 500);
+    },
     getBackgroundSize(event) {
       let backgroundPercent =
         (window.scrollX * 100) /
@@ -71,7 +123,7 @@ export default {
       this.backgroundPercent = this.getBackgroundSize();
     },
     horizontalScrol(event) {
-      if (event.deltaY != 0) {
+      if (event.deltaY != 0 && !this.blockScroll) {
         // manually scroll horizonally instead
         window.scroll(window.scrollX + event.deltaY * 5, window.scrollY);
 
@@ -111,7 +163,7 @@ export default {
     },
     getProject(query) {
       let projectList = this.projectList();
-
+      console.log(projectList["ev_collaboration"]);
       if (query in projectList) {
         // console.log(projectList[query]);
         return projectList[query];
@@ -132,11 +184,29 @@ export default {
       return false;
     }
   },
+  computed: {
+    getFontSize() {
+      let fontSize = "14.4rem";
+      if (this.curProject.title.length > 10) {
+        fontSize = "10rem";
+      }
+
+      return fontSize;
+    }
+  },
   data: () => {
     return {
       backgroundPercent: 0,
       curProject: "",
-      nextProjectLink: ""
+      nextProjectLink: "",
+      showMenu: false,
+      showAnimation: false,
+      curPhoto: {
+        src: null,
+        naturalWidth: null,
+        naturalHeight: null
+      },
+      blockScroll: false
     };
   }
 };

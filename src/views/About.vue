@@ -1,46 +1,44 @@
 <template>
   <main class="container-fluide about">
-    <div class="row">
+    <cMenu v-if="showMenu" @closeMenu="showMenu = false" />
+    <div class="row" v-if="showAnimation">
       <div class="about__container">
-        <div class="about__left col-12">
+        <div class="about__left about__imgContainer col-12 animated fadeIn">
           <div class="about__img" id="about_0" v-parallax="0.3"></div>
         </div>
-        <div class="about__right col-10">
+        <div class="about__right col-10 animated fadeIn">
           <ul class="menu menu--about">
-            <li class="col-6">
-              <router-link to="/" class="menu__el">main page</router-link>
-            </li>
-            <li class="col-6">
-              <router-link to="/portfolio " class="menu__el">portfolio</router-link>
-            </li>
-            <li class="col-6">
-              <router-link to="/about " class="menu__el menu__el--active">about me</router-link>
-            </li>
-            <li class="col-6">
-              <router-link to="/contacts " class="menu__el">contacts</router-link>
+            <li id="menuBtn">
+              <div class="menu__el" @click="showMenu = true">menu</div>
             </li>
           </ul>
-          <h1 class="h1 main__title">
+          <h1 class="h1 main__title animated slideInLeft fadeIn">
             Vera
             <br />Nikolaeva
           </h1>
 
           <div class="d-flex job">
             <ul class="job__list">
-              <li class="job__el">
+              <li class="job__el animated slideInLeft fadeIn" style="animation-delay: 0.1s;">
                 <div class="col-5 line"></div>Artist
               </li>
-              <li class="job__el">
+              <li class="job__el animated slideInLeft fadeIn" style="animation-delay: 0.2s;">
                 <div class="col-5 line"></div>Theater Director
               </li>
-              <li class="job__el">
+              <li class="job__el animated slideInLeft fadeIn" style="animation-delay: 0.3s;">
                 <div class="col-5 line"></div>Art historian
               </li>
             </ul>
           </div>
-          <p>My artistic searches originate in my curious nature, sensuality and sensitivity to the perception of the world, the desire to penetrate deep into the object of creation, to thoroughly recognize matter. My initial search always begins with sensory perception, then coloristic and tactile. It is important for me to take an extraordinary approach to the process of creation at every stage.</p>
-          <p>I have a deep interest in the study of various cultures, rituals, ancient scriptures. The free flight of the soul, the state and feeling in this world of an eternal wanderer and a migratory bird, an endless craving for knowledge are the main source of my inspiration.</p>
-          <p>East, exotic, elemental forces and meditation are the source of energy and peace of my soul. My life is a journey from a million different shades, a book of life that I write — living every day like a small life.</p>
+          <p
+            class="about--paragraph"
+          >My artistic searches originate in my curious nature, sensuality and sensitivity to the perception of the world, the desire to penetrate deep into the object of creation, to thoroughly recognize matter. My initial search always begins with sensory perception, then coloristic and tactile. It is important for me to take an extraordinary approach to the process of creation at every stage.</p>
+          <p
+            class="about--paragraph"
+          >I have a deep interest in the study of various cultures, rituals, ancient scriptures. The free flight of the soul, the state and feeling in this world of an eternal wanderer and a migratory bird, an endless craving for knowledge are the main source of my inspiration.</p>
+          <p
+            class="about--paragraph"
+          >East, exotic, elemental forces and meditation are the source of energy and peace of my soul. My life is a journey from a million different shades, a book of life that I write — living every day like a small life.</p>
         </div>
       </div>
 
@@ -58,16 +56,28 @@
             <div class="event__title col-12" v-html="item.title"></div>
             <div class="event__description col-12" v-html="item.description"></div>
           </div>
-          <div v-if="sectionI < Object.keys(sections).length - 1" class="line line--about col-12"></div>
+          <!-- <div v-if="sectionI < Object.keys(sections).length - 1" class="line line--about col-6"></div> -->
         </div>
       </div>
     </div>
   </main>
 </template>
 <script>
+import cMenu from "../components/cMenu.vue";
+
 export default {
+  components: {
+    cMenu
+  },
+  mounted: function() {
+    this.$nextTick(function() {
+      this.showAnimation = true;
+    });
+  },
   data: () => {
     return {
+      showMenu: false,
+      showAnimation: false,
       sections: {
         "About me": [
           {
@@ -114,7 +124,7 @@ export default {
           {
             title: "2016-2019:",
             description:
-              "MIR-5 workshop of individual directing (led by Boris Yukhananov)."
+              "MIR-5 workshop of individual <br> directing (led by Boris Yukhananov)."
           },
           {
             title: "2017-2019:",
@@ -153,7 +163,7 @@ export default {
           {
             title: "2012-2014",
             description:
-              "Artistic Director of the theatre studio at the Repin’s Academy  of Arts. Created a number of performances in foreign languages (English, French). Participation in different theatre festivals with the play The Little Prince: 43 Sunsets, creator of video performances and installations."
+              "Artistic Director of the theatre studio at the Repin’s Academy  of Arts. Created a number of performances in foreign languages (English, French). Participation in different theatre festivals with the play The Little Prince: 43 Sunsets. Creator of video performances and installations."
           },
           {
             title: "2013",

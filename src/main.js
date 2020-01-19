@@ -6,21 +6,24 @@ import router from "./router";
 import VueScrollTo from "vue-scrollto";
 import VueScrollactive from "vue-scrollactive";
 import VueParallaxJs from "vue-parallax-js";
-Vue.use(VueParallaxJs);
+// require("vue2-animate/dist/vue2-animate.min.css");
+require("animate.css");
+import VuePageTransition from "vue-page-transition";
 
+Vue.use(VuePageTransition);
+
+Vue.use(VueParallaxJs);
 // Vue.use(Scrollspy);
 // Vue.use(ScrollView);
 // Vue.use(VueScrollTo);
-Vue.use(VueScrollactive, {
-    clickToScroll: true
-});
+Vue.use(VueScrollactive);
 
 // You can also pass in the default options
 Vue.use(VueScrollTo, {
     container: "body",
     duration: 500,
     easing: "ease",
-    offset: 0,
+    offset: -65,
     force: true,
     cancelable: true,
     onStart: false,

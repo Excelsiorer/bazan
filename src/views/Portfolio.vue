@@ -1,10 +1,12 @@
 <template>
   <main class="container instalations">
-    <div class="row">
+    <div class="row animated fadeIn" v-if="showAnimation">
+      <cMenu v-if="showMenu" @closeMenu="showMenu = false" />
       <div class="instalations__left col-4">
         <ul class="instalations__menu">
           <li
-            class="instalations__menu-el"
+            class="instalations__menu-el animated slideInLeft fadeIn"
+            :style="{animationDelay: `0.${cityNumber}s`}"
             v-for="(city, cityKey, cityNumber) in projects"
             :key="city.link"
           >
@@ -21,7 +23,9 @@
               class="instalations__submenu"
               active-class="instalations__submenu-btn--active"
               tag="ul"
-              :offset="scrollSpyOfsset"
+              :offset="250"
+              :scrollOffset="50"
+              :clickToScroll="true"
               @itemchanged="setActiveMenu"
             >
               <li
@@ -39,21 +43,16 @@
           </li>
           <li class="instalations__menu-el">
             <div class="instalations__separator"></div>
-            <a href="#video" class="instalations__menu-btn">Video</a>
+            <a
+              href="#video"
+              class="instalations__menu-btn animated slideInLeft fadeIn"
+              :style="{animationDelay: `0.${Object.keys(projects).length}s`}"
+            >Video</a>
           </li>
           <li>
             <ul class="menu">
-              <li>
-                <router-link to="/portfolio" class="menu__el menu__el--active">portfolio</router-link>
-              </li>
-              <li>
-                <router-link to="/" class="menu__el">main page</router-link>
-              </li>
-              <li>
-                <router-link to="/about " class="menu__el">about me</router-link>
-              </li>
-              <li>
-                <router-link to="/contacts " class="menu__el">contacts</router-link>
+              <li id="menuBtn">
+                <div class="menu__el" @click="showMenu = true">menu</div>
               </li>
             </ul>
           </li>
@@ -74,7 +73,6 @@
             :key="projectType.link"
             :id="city.link + '-' +projectType.link"
           >
-            <div class="work__section-separator"></div>
             <div class="instalations__works">
               <h2
                 class="instalations__title"
@@ -84,6 +82,7 @@
                         activeSubmenu == projectType.link
                 }"
               >{{ projectTypeKey }}</h2>
+              <div class="work__separator--start"></div>
               <template v-for="(project, projectKey, projectI) in projectType.projects">
                 <router-link
                   class="work col-24"
@@ -95,13 +94,18 @@
                     :src="
                         require('../assets/img/projects/' +
                             project.srcFolder +
-                            '/poster.png')
+                            '/'+ project.poster )
                     "
                   />
                   <div class="work__body">
                     <header class="instalations__header">
                       <div class="work__title">{{ project.title }}</div>
-                      <p class="work__description col-12">{{ project.description }}</p>
+                      <p
+                        class="work__description col-23"
+                        v-for="(text, textI) in project.description"
+                        :key="'work__description' + textI"
+                        v-html="text"
+                      ></p>
                     </header>
 
                     <footer class="work__footer">
@@ -124,6 +128,8 @@
 
 <script>
 import projects from "../projects.js";
+import cMenu from "../components/cMenu.vue";
+
 export default {
   name: "Portfolio",
   data: () => {
@@ -131,11 +137,19 @@ export default {
       projects: projects,
       activeMenu: "saintp",
       activeSubmenu: "performances",
-      scrollSpyOfsset: 300,
-      fixedPositionX: null
+      fixedPositionX: null,
+      showMenu: false,
+      showAnimation: false
     };
   },
-
+  components: {
+    cMenu
+  },
+  mounted: function() {
+    this.$nextTick(function() {
+      this.showAnimation = true;
+    });
+  },
   methods: {
     setActiveMenu(event, currentItem, lastActiveItem) {
       // // debugger;

@@ -15,6 +15,10 @@
 }
 
 /*Общие стили*/
+html {
+    font-size: 10px;
+}
+
 body {
     font-family: "PlayfairDisplay-Regular", serif;
     color: #000;
@@ -24,6 +28,10 @@ body {
 a:hover {
     text-decoration: none;
     color: #000;
+}
+
+.block-scroll {
+    overflow: hidden;
 }
 
 /*Общие стили -> Текст*/
@@ -38,7 +46,7 @@ a:hover {
 
 .h3 {
     /* font-size: 28px; */
-    font-size: 3vh;
+    font-size: 2rem;
     font-family: "PlayfairDisplay-Bold", serif;
     margin: 0;
 }
@@ -58,6 +66,91 @@ a:hover {
 }
 
 /*Общие стили -> Меню*/
+.menu__close,
+.photo__close {
+    background-image: url(../img/closeMenu.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 61px;
+    height: 61px;
+    cursor: pointer;
+    transition: 0.3s;
+    transform: rotate(0deg);
+}
+.menu__close:hover,
+.photo__close:hover {
+    transform: rotate(90deg);
+}
+#menuBtn {
+    cursor: pointer;
+}
+.menuOverlay {
+    position: fixed;
+    background-image: url("../img/contacts_bg.png");
+    left: 0;
+    top: 0;
+    z-index: 9999;
+}
+.menuOverlay .row {
+    justify-content: center;
+}
+
+.menuOverlay__bg {
+    background-image: url("../img/contacts_bg.png");
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.big-menu {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    list-style-type: none;
+    background-position: center;
+    background-size: cover;
+}
+.big-menu .menu__el {
+    font-size: 10.4rem;
+    font-family: "PlayfairDisplay-Black", serif;
+    background-image: url(../img/fill_text.png);
+    background-size: 0% 100%;
+    // max-width: 50%;
+    // word-wrap: break-word;
+    background-repeat: no-repeat;
+    background-clip: text;
+    // transition: 0.1s;
+    color: transparent;
+    -webkit-text-stroke: 1px #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.big-menu .menu__el--active {
+    color: #fff;
+    // -webkit-text-stroke: 0px #fff;
+}
+.big-menu .menu__el--active:after {
+    display: none;
+}
+.big-menu .menu__el:hover {
+    color: #fff;
+    // -webkit-text-stroke: 0px #fff;
+}
+.big-menu .menu__el:hover:after {
+    display: none;
+}
+.big-menu .menu__li:last-child,
+.big-menu .menu__li:nth-child(3) {
+    text-align: left;
+}
+.big-menu .menu__li:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .menu {
     display: flex;
     padding: 0;
@@ -73,7 +166,8 @@ a:hover {
 .menu__el {
     color: #000;
     font-weight: bold;
-    font-size: 3.2vh;
+    // font-size: 3.2vh;
+    font-size: 2.2rem;
     position: relative;
     overflow: hidden;
 }
@@ -229,8 +323,8 @@ a:hover {
 }
 
 .instalations__menu-btn {
-    // font-size: 5vh;
-    font-size: 8.8vh;
+    // font-size: 8.8vh;
+    font-size: 5rem;
     color: transparent;
     -webkit-text-stroke: 0.5px black;
     transition: 0.3s;
@@ -243,7 +337,7 @@ a:hover {
 
 .instalations__submenu {
     display: none;
-    margin-left: -15px;
+    // margin-left: -15px;
     margin-bottom: 1vh;
     margin-top: 1vh;
 }
@@ -254,7 +348,8 @@ a:hover {
 
 .instalations__submenu-btn {
     font-family: "PlayfairDisplay-Regular", serif;
-    font-size: 4vh;
+    // font-size: 4vh;
+    font-size: 3rem;
     text-transform: capitalize;
     opacity: 0.5;
     color: #000;
@@ -279,9 +374,10 @@ a:hover {
 
 .instalations__title {
     font-family: "PlayfairDisplay-Black";
-    font-size: 13.2vh;
+    // font-size: 13.2vh;
+    font-size: 10rem;
     position: fixed;
-    top: 10px;
+    top: -10px;
     padding-left: 5px;
     z-index: 0;
     opacity: 0;
@@ -335,13 +431,20 @@ a:hover {
 }
 
 .work__separator {
-    height: 100px;
+    height: 50px;
     width: 100%;
     background-color: #fdf9f4;
     z-index: 999;
 }
-.work__separator--last {
+.work__separator--start {
     height: 100px;
+    width: 100%;
+    background-color: #fdf9f4;
+    z-index: 999;
+    z-index: -1;
+}
+.work__separator--last {
+    height: 50px;
     width: 100%;
     background-color: #fdf9f4;
     z-index: -1;
@@ -381,13 +484,31 @@ a:hover {
 }
 
 .work__description {
-    padding: 20px 0 0 0;
+    padding: 5px 0 0 0;
+}
+
+.work__description .line--description {
+    display: block;
+    height: 1px;
+    width: 50px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 50%;
+}
+.work__description ul {
+    list-style-type: none;
+    padding: 0;
+}
+.work__description li {
+    position: relative;
+    padding-left: 65px;
 }
 
 .work__description,
 .work__year,
 .work__language {
-    font-size: 2.5vh;
+    font-size: 1.8rem;
 }
 
 .work__footer {
@@ -414,10 +535,12 @@ a:hover {
 }
 
 .project__description {
-    display: flex;
+    // display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
+    font-size: 1.7rem;
+    padding: 0;
 }
 
 .project__description-next {
@@ -511,6 +634,21 @@ span.sim-dot {
 
 /*Стилия для contacts*/
 
+.contacts__text {
+    font-size: 1.8rem;
+    line-height: 140%;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.contacts__h3 {
+    margin-bottom: 15px;
+}
+
+.contacts__body {
+    padding: 0;
+}
+
 .app--contacts {
     background-image: url("../img/contacts_bg.png");
     background-position: center;
@@ -526,8 +664,12 @@ span.sim-dot {
     color: #fff;
 }
 
-.contacts .menu__el {
+.contacts #menuBtn .menu__el {
     color: #fff;
+}
+
+.contacts .menu__el {
+    // color: #fff;
 }
 
 .contacts .menu__el:hover:after {
@@ -549,6 +691,7 @@ span.sim-dot {
 
 .contacts__infoBottom > .contacts__infoBlock {
     margin-right: 50px;
+    margin-bottom: 40px;
 }
 
 .contacts__infoBottom {
@@ -616,11 +759,28 @@ span.sim-dot {
 
 /*Стили для страницы about*/
 .menu--about {
-    margin: 5vh 0 15vh 0;
+    // margin: 5vh 0 15vh 0;
+    position: absolute;
+    right: 0;
+}
+.menu--about #menuBtn {
+    margin-left: auto;
+    margin-right: 0;
 }
 
 .about > .row {
     margin-right: 0;
+}
+
+.about .about__container:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/*Стили для фикса паралакса. Без маржина картинка слева будет иметь отступ сверху. А что бы Не было большого отступа сверху у текста, пишем position: relative и двигаем вверх*/
+.about__right {
+    // margin-top: 100px;
+    // position: relative;
+    // top: -80px;
 }
 
 .about__container {
@@ -639,6 +799,9 @@ span.sim-dot {
     position: relative;
 }
 
+.about--paragraph {
+    font-size: 1.7rem;
+}
 .line--about {
     margin: 70px auto 0 auto;
     height: 1px;
@@ -691,9 +854,40 @@ span.sim-dot {
 
 .about__imgContainer {
     overflow: hidden;
+    padding: 0;
 }
 
 /*Стили для страницы проекта*/
+.photo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.photo__bg {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+.photo__close {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+.photo__img {
+    width: auto !important;
+    height: 90vh;
+    object-fit: contain;
+}
 .single-project {
     max-height: 100vh;
     height: 97vh;
@@ -710,15 +904,16 @@ span.sim-dot {
     max-width: 1200px;
 }
 .project__body {
-    height: calc(100vh - 150px);
-    margin-top: auto;
+    height: calc(100vh - 70px);
+    // margin-top: auto;
+    padding: 0;
 }
 
 .project__photos {
     display: flex;
 }
 .project__photos .project__photo:nth-child(odd) {
-    align-self: end;
+    align-self: flex-end;
 }
 .project__photos .project__photo:last-child {
     margin-right: 50px;
@@ -726,7 +921,7 @@ span.sim-dot {
 .project__photo {
     margin: 0 50px;
     object-fit: contain;
-    height: 50vh;
+    height: 40vh;
 }
 
 .project__list {
@@ -741,18 +936,21 @@ span.sim-dot {
 
 .project__title-container {
     position: fixed;
-    top: 35%;
-    left: 35%;
+    top: 30%;
+    left: 25%;
+    z-index: -2;
 }
 
 .project__title {
-    font-size: 10vh;
+    font-size: 14.4rem;
     font-family: "PlayfairDisplay-Black", serif;
     background-image: url(../img/fill_text.png);
     background-size: 0% 100%;
+    // max-width: 50%;
+    // word-wrap: break-word;
     background-repeat: no-repeat;
     background-clip: text;
-    // transition: 0.1s;
+    transition: 0.1s;
     color: transparent;
     -webkit-text-stroke: 1px black;
 }
