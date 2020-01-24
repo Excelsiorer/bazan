@@ -56,19 +56,19 @@
         </div>
 
         <div class="col-12 contacts__left">
-          <h1 class="h1 animated slideInLeft fadeIn">
+          <h1 class="h1 animated slideInRight fadeIn">
             Vera
             <br />Nikolaeva
           </h1>
           <div class="d-flex job contacts__job">
             <ul class="job__list">
-              <li class="job__el animated slideInLeft fadeIn" style="animation-delay: 0.1s;">
+              <li class="job__el animated slideInRight fadeIn" style="animation-delay: 0.1s;">
                 <div class="col-5 line"></div>Artist
               </li>
-              <li class="job__el animated slideInLeft fadeIn" style="animation-delay: 0.2s;">
+              <li class="job__el animated slideInRight fadeIn" style="animation-delay: 0.2s;">
                 <div class="col-5 line"></div>Theater Director
               </li>
-              <li class="job__el animated slideInLeft fadeIn" style="animation-delay: 0.3s;">
+              <li class="job__el animated slideInRight fadeIn" style="animation-delay: 0.3s;">
                 <div class="col-5 line"></div>Art historian
               </li>
             </ul>

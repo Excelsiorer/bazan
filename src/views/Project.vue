@@ -16,8 +16,8 @@
         </li>
       </ul>
       <div class="project__list">
-        <div class="col-24 d-flex project__body">
-          <div class="project__description col-5">
+        <div class="d-flex project__body">
+          <div class="project__description">
             <p
               v-for="(text, textI) in curProject.description"
               :key="'project__description' + textI"
@@ -42,12 +42,22 @@
             />
             <img src="../assets/img/project__separator.png" class="project__photo--last" />
             <div class="project__separator"></div>
-            <a
-              :href="nextProjectLink"
-              class="project__nextBtn"
-              v-if="getNextProject()"
-            >Следующая работа</a>
-            <router-link to="/portfolio" class="project__nextBtn" v-else>Вернутсья в портфолио</router-link>
+            <div class="project__nextBtn">
+              <ul class="project__nextBtn-list">
+                <li>
+                  <a :href="nextProjectLink" class v-if="getNextProject()">next</a>
+                  <div class="project__nextBtn-arrow"></div>
+                </li>
+                <li>
+                  <router-link to="/portfolio">portfolio</router-link>
+                  <div class="project__nextBtn-arrow"></div>
+                </li>
+                <li>
+                  <div class="project__nextBtn-menu" @click="showMenu = true">menu</div>
+                  <div class="project__nextBtn-arrow"></div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -72,7 +82,7 @@ export default {
     // this.curProject = this.$route.params.id;
     this.curProject = this.getProject(this.$route.params.id);
     this.nextProjectLink = "/portfolio/" + this.getNextProject().link;
-    console.log(this.$route.params.id);
+    // console.log(this.$route.params.id);
     // this.projects[curProject.link] = curProject;
     // this.$set(this.projects, curProject.link, curProject);
   },
@@ -85,7 +95,7 @@ export default {
       this.curPhoto.src = photo;
       document.getElementsByTagName("html")[0].classList.add("block-scroll");
       this.blockScroll = true;
-      console.log(photo);
+      // console.log(photo);
 
       // var img = document.getElementsByClassName("project__photo")[0];
       let img = new Image();
@@ -163,7 +173,7 @@ export default {
     },
     getProject(query) {
       let projectList = this.projectList();
-      console.log(projectList["ev_collaboration"]);
+      // console.log(projectList["ev_collaboration"]);
       if (query in projectList) {
         // console.log(projectList[query]);
         return projectList[query];

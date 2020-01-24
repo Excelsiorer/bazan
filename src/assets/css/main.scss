@@ -44,6 +44,12 @@ a:hover {
     margin: 0;
 }
 
+.h2 {
+    /* font-size: 28px; */
+    margin: 0;
+    font-size: 7vh;
+    font-family: "PlayfairDisplay-Bold", serif;
+}
 .h3 {
     /* font-size: 28px; */
     font-size: 2rem;
@@ -318,6 +324,7 @@ a:hover {
     font-family: "PlayfairDisplay-Bold", serif;
     letter-spacing: 0.035em;
     display: block;
+    outline: none;
     /* border: none; */
     /* cursor: pointer; */
 }
@@ -329,10 +336,16 @@ a:hover {
     -webkit-text-stroke: 0.5px black;
     transition: 0.3s;
     line-height: 95%;
+    margin-bottom: 15px;
 }
 
 .instalations__menu-btn--active {
     color: #000;
+}
+
+.instalations__menu-el {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .instalations__submenu {
@@ -340,6 +353,12 @@ a:hover {
     // margin-left: -15px;
     margin-bottom: 1vh;
     margin-top: 1vh;
+    padding-left: 60px;
+}
+
+.instalations__submenu-el{
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .instalations__menu-btn--active + .instalations__submenu {
@@ -349,7 +368,7 @@ a:hover {
 .instalations__submenu-btn {
     font-family: "PlayfairDisplay-Regular", serif;
     // font-size: 4vh;
-    font-size: 3rem;
+    font-size: 2.5rem;
     text-transform: capitalize;
     opacity: 0.5;
     color: #000;
@@ -480,7 +499,7 @@ a:hover {
 }
 
 .work__title {
-    font-size: 5vh;
+    font-size: 3rem;
 }
 
 .work__description {
@@ -541,6 +560,7 @@ a:hover {
     align-items: flex-end;
     font-size: 1.7rem;
     padding: 0;
+    width: 40vw;
 }
 
 .project__description-next {
@@ -762,6 +782,7 @@ span.sim-dot {
     // margin: 5vh 0 15vh 0;
     position: absolute;
     right: 0;
+    top: 26px;
 }
 .menu--about #menuBtn {
     margin-left: auto;
@@ -818,6 +839,13 @@ span.sim-dot {
     left: 0;
 }
 
+.about__h2{
+    margin-top: 50px;
+    margin-bottom: -20px;
+    padding-left: 30px;
+    line-height: 7vh;
+}
+
 #about_0 {
     background-image: url("~../img/about_0.png");
 }
@@ -835,6 +863,34 @@ span.sim-dot {
 }
 #about_5 {
     background-image: url("~../img/about_5.png");
+}
+
+#singleImage__about_1{
+    background-image: url("~../img/about_1.png");
+}
+#singleImage__about_2{
+    background-image: url("~../img/about_2.png");
+}
+#singleImage__about_3{
+    background-image: url("~../img/about_3.png");
+}
+#singleImage__about_4{
+    background-image: url("~../img/about_4.png");
+}
+#singleImage__about_5{
+    background-image: url("~../img/about_5.png");
+}
+#singleImage__about_6{
+    background-image: url("~../img/about_6.png");
+}
+#singleImage__about_7{
+    background-image: url("~../img/about_7.png");
+}
+#singleImage__about_8{
+    background-image: url("~../img/about_8.png");
+}
+#singleImage__about_9{
+    background-image: url("~../img/about_9.png");
 }
 
 .event {
@@ -913,15 +969,19 @@ span.sim-dot {
     display: flex;
 }
 .project__photos .project__photo:nth-child(odd) {
-    align-self: flex-end;
+    // align-self: flex-end;
+}
+.project__photos .project__photo:first-child {
+    margin-left: 20vw;
 }
 .project__photos .project__photo:last-child {
     margin-right: 50px;
 }
 .project__photo {
-    margin: 0 50px;
+    margin: 0 35vw;
     object-fit: contain;
-    height: 40vh;
+    // height: 40vh;
+    height: 90vh;
 }
 
 .project__list {
@@ -937,7 +997,7 @@ span.sim-dot {
 .project__title-container {
     position: fixed;
     top: 30%;
-    left: 25%;
+    left: 35vw;
     z-index: -2;
 }
 
@@ -965,4 +1025,48 @@ span.sim-dot {
 }
 
 .project__nextBtn {
+    width: 226px;
+    height: 100vh;
+    background-color: rgba(0,0,0,.7);
+    position: relative;
+    top: -62px;
+    display: block;
+    padding: 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project__nextBtn-list{
+    list-style-type: none;
+    color: #fff;
+    font-size: 28px;
+    padding: 0;
+}
+
+.project__nextBtn-list a{
+    color: #fff;
+}
+.project__nextBtn-list li{
+    display: flex;
+    align-items: center;
+}
+
+.project__nextBtn-list li:hover > .project__nextBtn-arrow{
+    opacity: 1;
+}
+
+.project__nextBtn-arrow{
+    background-image: url("~../img/arrow.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 20px;
+    opacity: 0;
+    transition: .3s;
+}
+
+.project__nextBtn-menu{
+    cursor: pointer;
 }

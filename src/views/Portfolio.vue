@@ -18,7 +18,7 @@
                                 'instalations__menu-btn--active':
                                     activeMenu == city.link
                             }"
-            >{{ cityKey }}</a>
+            >{{ city.title }}</a>
             <scrollactive
               class="instalations__submenu"
               active-class="instalations__submenu-btn--active"
@@ -37,17 +37,17 @@
                 <a
                   :href="'#' + city.link +'-' +projectType.link"
                   class="instalations__submenu-btn scrollactive-item"
-                >{{ projectTypeKey }}</a>
+                >{{ projectType.title }}</a>
               </li>
             </scrollactive>
           </li>
           <li class="instalations__menu-el">
             <div class="instalations__separator"></div>
-            <a
+            <!-- <a
               href="#video"
               class="instalations__menu-btn animated slideInLeft fadeIn"
               :style="{animationDelay: `0.${Object.keys(projects).length}s`}"
-            >Video</a>
+            >Video</a>-->
           </li>
           <li>
             <ul class="menu">
@@ -81,7 +81,7 @@
                         activeMenu == city.link &&
                         activeSubmenu == projectType.link
                 }"
-              >{{ projectTypeKey }}</h2>
+              >{{ projectType.title }}</h2>
               <div class="work__separator--start"></div>
               <template v-for="(project, projectKey, projectI) in projectType.projects">
                 <router-link
@@ -129,6 +129,7 @@
 <script>
 import projects from "../projects.js";
 import cMenu from "../components/cMenu.vue";
+import scrollactive from "../components/cScrollactive.vue";
 
 export default {
   name: "Portfolio",
@@ -143,7 +144,8 @@ export default {
     };
   },
   components: {
-    cMenu
+    cMenu,
+    scrollactive
   },
   mounted: function() {
     this.$nextTick(function() {
@@ -156,14 +158,32 @@ export default {
       this.fixedPositionX = currentItem
         ? currentItem.offsetTop + currentItem.offsetHeight
         : 0;
-      let hash = currentItem
-        ? currentItem.hash.split("-")
-        : ["saintp", "performances"];
-      console.log(currentItem);
-      console.log(lastActiveItem);
-      console.log("--------------");
-      this.activeMenu = hash[0].replace("#", "");
-      this.activeSubmenu = hash[1];
+      let hash;
+      if (currentItem) {
+        hash = currentItem
+          ? currentItem.hash.split("-")
+          : ["saintp", "performances"];
+        // console.log(currentItem);
+        // console.log(lastActiveItem);
+        // console.log("--------------");
+        this.activeMenu = hash[0].replace("#", "");
+        this.activeSubmenu = hash[1];
+      } else if (lastActiveItem) {
+        hash = lastActiveItem.hash.split("-");
+        let lastCity = hash[0].replace("#", "");
+        let lastTheme = hash[1];
+        let nextCity, nextTheme;
+        for (var i = 0; i < Object.keys(this.projects).length; i++) {
+          if (Object.keys(this.projects)[i] === lastCity) {
+            nextCity = Object.keys(this.projects)[i - 1];
+            nextTheme = Object.keys(
+              this.projects[Object.keys(this.projects)[i - 1]].themes
+            )[0];
+          }
+        }
+        this.activeMenu = nextCity;
+        this.activeSubmenu = nextTheme;
+      }
     }
   }
 };

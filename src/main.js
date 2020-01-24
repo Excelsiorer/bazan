@@ -4,7 +4,7 @@ import router from "./router";
 // import Scrollspy from 'vue2-scrollspy';
 // import ScrollView from "vue-scrollview";
 import VueScrollTo from "vue-scrollto";
-import VueScrollactive from "vue-scrollactive";
+// import VueScrollactive from "vue-scrollactive";
 import VueParallaxJs from "vue-parallax-js";
 // require("vue2-animate/dist/vue2-animate.min.css");
 require("animate.css");
@@ -16,7 +16,7 @@ Vue.use(VueParallaxJs);
 // Vue.use(Scrollspy);
 // Vue.use(ScrollView);
 // Vue.use(VueScrollTo);
-Vue.use(VueScrollactive);
+// Vue.use(VueScrollactive);
 
 // You can also pass in the default options
 Vue.use(VueScrollTo, {

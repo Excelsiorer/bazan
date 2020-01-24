@@ -12,20 +12,20 @@
               <div class="menu__el" @click="showMenu = true">menu</div>
             </li>
           </ul>
-          <h1 class="h1 main__title animated slideInLeft fadeIn">
+          <h1 class="h1 main__title animated slideInRight fadeIn">
             Vera
             <br />Nikolaeva
           </h1>
 
           <div class="d-flex job">
             <ul class="job__list">
-              <li class="job__el animated slideInLeft fadeIn" style="animation-delay: 0.1s;">
+              <li class="job__el animated slideInRight fadeIn" style="animation-delay: 0.1s;">
                 <div class="col-5 line"></div>Artist
               </li>
-              <li class="job__el animated slideInLeft fadeIn" style="animation-delay: 0.2s;">
+              <li class="job__el animated slideInRight fadeIn" style="animation-delay: 0.2s;">
                 <div class="col-5 line"></div>Theater Director
               </li>
-              <li class="job__el animated slideInLeft fadeIn" style="animation-delay: 0.3s;">
+              <li class="job__el animated slideInRight fadeIn" style="animation-delay: 0.3s;">
                 <div class="col-5 line"></div>Art historian
               </li>
             </ul>
@@ -48,10 +48,18 @@
         :key="sectionKey"
       >
         <div class="about__left about__imgContainer col-12">
-          <div class="about__img" :id="'about_' + (sectionI + 1)" v-parallax="0.3"></div>
-          <h2 class="about__imgTitle">{{sectionKey}}</h2>
+          <div
+            class="about__img"
+            v-for="(image, imageKey, imageI) in imgForSections[sectionKey]"
+            :key="'singleImage__' + image"
+            :id="'singleImage__' + image"
+            :style="{height: 110 / imgForSections[sectionKey].length + '%'}"
+            v-parallax="0.4 + ( imageKey/10 )"
+          ></div>
+          <!-- <h2 class="about__imgTitle">{{sectionKey}}</h2> -->
         </div>
         <div class="about__right col-10">
+          <h2 class="h2 about__h2">{{sectionKey}}</h2>
           <div class="about__event event" v-for="(item, itemKey) in section" :key="itemKey">
             <div class="event__title col-12" v-html="item.title"></div>
             <div class="event__description col-12" v-html="item.description"></div>
@@ -221,6 +229,13 @@ export default {
               "Winner of the grant competition among Directors, Athens (Greece). Master class led by Andrew Vishnevski (London)."
           }
         ]
+      },
+      imgForSections: {
+        "About me": ["about_1", "about_2"],
+        Education: ["about_3", "about_4"],
+        "Additional Education": ["about_5"],
+        Experience: ["about_6", "about_7", "about_8"],
+        Awards: ["about_9"]
       }
     };
   }

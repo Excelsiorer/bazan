@@ -1,9 +1,11 @@
 export default {
-    "Saint.P": {
+    saintp: {
         link: "saintp",
+        title: "Saint.P",
         themes: {
             performances: {
                 link: "performances",
+                title: "performances",
                 projects: {
                     "L'histoired'une rêveuse": {
                         title: "L'histoired'une rêveuse",
@@ -56,18 +58,35 @@ export default {
                             "First professional experience in theater directing.<br>Presented in French."
                         ],
                         year: 2013
-                    }
+                    },
+                    "«WK school» project": {
+                        title: "«WK school» project",
+                        link: "wk_school_project",
+                        srcFolder: "wk_school_project",
+                        poster: "poster.png",
+                        photos: [
+                            "1.jpg", "2.jpg", "3.jpg"
+                        ],
+                        description: [
+                            "During several years i was working with theater studio based <br>in «WK school»",
+                            "Theater collaborative projects"
+                        ],
+                        year: '2014 — 2019'
+                    },
                 }
             },
             videoprojects: {
                 link: "videoprojects",
+                title: "videoprojects",
                 projects: {
                     Dedication: {
                         title: "Dedication",
                         link: "dedication",
                         srcFolder: "dedication",
                         poster: "poster.jpg",
-                        photos: [],
+                        photos: [
+                            "1.jpg", "2.jpg"
+                        ],
                         description: [
                             "This project show the way of connectiıng between human characters through dıffererent elements force and colors"
                         ],
@@ -88,6 +107,7 @@ export default {
             },
             paintings: {
                 link: "paintings",
+                title: "paintings",
                 projects: {
                     "Before migration": {
                         title: "Before migration",
@@ -113,6 +133,7 @@ export default {
             },
             photos: {
                 link: "photos",
+                title: "photos",
                 projects: {
                     "Black and white series on Zenit camera": {
                         title: "Black and white series on Zenit camera",
@@ -149,16 +170,44 @@ export default {
                             "During three years (2012 — 2015) i was styding old technics of photograthy in Saint — Petersburg. Course was led by Elena Agafonova. The result of this experİence become several series of photographs."
                         ],
                         year: "2012 — 2015"
+                    },
+                    "Black and white series on digital camera": {
+                        title: "Black and white series on digital camera",
+                        link: "black_and_white_series_on_digital_camera",
+                        srcFolder: "black_and_white_series_on_digital_camera",
+                        poster: "poster.jpg",
+                        photos: [
+                            "1.jpg",
+                            "2.jpg",
+                            "3.jpg",
+                            "4.jpg",
+                            "5.jpg",
+                            "6.jpg",
+                            "7.jpg",
+                            "8.jpg",
+                            "9.jpg",
+                            "10.jpg",
+                            "11.jpg",
+                            "12.jpg",
+                            "13.jpg",
+                            "14.jpg"
+                        ],
+                        description: [
+                            "During three years ( 2012- 2015) i was styding different technics of photograthy in Saint – Petersburg. Course was led by Elena Agafonova. The result of this experİence become several series of photographs."
+                        ],
+                        year: "2012 — 2015"
                     }
                 }
             }
         }
     },
-    Moscow: {
+    moscow: {
         link: "moscow",
+        title: "Moscow",
         themes: {
             performances: {
                 link: "performances",
+                title: "performances",
                 projects: {
                     "Foam of Daydream": {
                         title: "Foam of Daydream",
@@ -274,8 +323,9 @@ export default {
                     }
                 }
             },
-            "production design": {
+            production_design: {
                 link: "production_design",
+                title: "production design",
                 projects: {
                     Terrarium: {
                         title: "Terrarium",
@@ -313,6 +363,7 @@ export default {
             },
             acting: {
                 link: "acting",
+                title: "acting",
                 projects: {
                     "Free Da": {
                         title: "Free Da",
@@ -349,11 +400,13 @@ export default {
             }
         }
     },
-    Athens: {
+    athens: {
         link: "athens",
+        title: "Athens",
         themes: {
             directing: {
                 link: "directing",
+                title: "directing",
                 projects: {
                     "Exploring Shekspeare": {
                         title: "Exploring Shekspeare",
@@ -371,11 +424,13 @@ export default {
             }
         }
     },
-    Istanbul: {
+    istanbul: {
         link: "istanbul",
+        title: "Istanbul",
         themes: {
-            "Exhibition projects": {
+            exhibition_projects: {
                 link: "exhibition_projects",
+                title: "Exhibition projects",
                 projects: {
                     "Musles Project": {
                         title: "Musles Project",
@@ -393,7 +448,7 @@ export default {
                         title: "«EV» collaboration",
                         link: "ev_collaboration",
                         srcFolder: "ev_collaboration",
-                        poster: "poster.jpg",
+                        poster: "poster.png",
                         photos: [],
                         description: [
                             "Picturesque poetic research based on deep sensory and karmic experience. The process includes the creation of paintings, the poetic reaction on them and then immersion of a work of art in live sound waves.",
@@ -405,6 +460,7 @@ export default {
             },
             drawings: {
                 link: "drawings",
+                title: "drawings",
                 projects: {
                     "Soul of Istanbul": {
                         title: "Soul of Istanbul",
